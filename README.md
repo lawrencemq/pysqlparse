@@ -1,2 +1,2 @@
-# py-sql-tables
-Find table names in a SQL query
+# py-sql-parser
+Find table names and other information in a SQL query
