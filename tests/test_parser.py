@@ -1,4 +1,4 @@
-from py_sql_parser.parser import get_table_names
+from pysqlparse.parser import get_table_names
 
 long_query = """
         CREATE TABLE stage_db.table1 WITH (format = 'parquet', parquet_compression='snappy', external_location='s3://testy_mc_testface/', partitioned_by = 'year' ) AS 
