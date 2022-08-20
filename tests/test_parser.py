@@ -464,3 +464,13 @@ def test_ignores_cross_join():
             ' day = date_format(cast(\'2012-08-23\' as date), \'%d\')'
     result = get_table_names(query)
     assert result == {'db1.account', }
+
+
+def test_finds_tables_in_multiple_select():
+    query = '''SELECT * FROM test_table as tbl1, test_schema.test_table2 tabl2 group by tbl1.name'''
+    result = get_table_names(query)
+    assert result == {'test_table', 'test_schema.test_table2'}
+
+    query2 = '''SELECT * FROM test_table as tbl1, test_schema.test_table2 tabl2, test3.test_table3 group by tbl1.name'''
+    result2 = get_table_names(query2)
+    assert result2 == {'test_table', 'test_schema.test_table2', 'test3.test_table3'}
